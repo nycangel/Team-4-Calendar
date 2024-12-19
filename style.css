@@ -1,0 +1,264 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+header {
+    background-color: #007BFF;
+    color: white;
+    padding: 1em 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .branding {
+    text-align: left;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+}
+
+/* Current Date and Time */
+#current-date-time {
+    margin-bottom: 1em;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* Calendar Section */
+#calendar-section {
+    width: 80%;
+    margin-bottom: 2em;
+    background: white;
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5em;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+.calendar-days .day-label {
+    font-size: 1em;
+    color: #007BFF;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5em;
+}
+
+.calendar-grid .calendar-cell {
+    background-color: #f4f4f4;
+    text-align: center;
+    padding: 1em;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.calendar-grid .calendar-cell:hover {
+    background-color: #d6eaff;
+    cursor: pointer;
+}
+
+.calendar-grid .calendar-cell.active {
+    background-color: #007BFF;
+    color: white;
+    font-weight: bold;
+}
+
+.calendar-grid .calendar-cell.blank {
+    background-color: transparent;
+    border: none;
+}
+
+/* Form Section for Index Page */
+.form-section {
+    width: 80%;
+    background: white;
+    padding: 2em;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 2em;
+}
+
+.form-section form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-section form label {
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+.form-section form input,
+.form-section form textarea,
+.form-section form button {
+    margin-bottom: 1em;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.form-section form button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-section form button:hover {
+    background-color: #0056b3;
+}
+
+/* Event Log Section for Log Page */
+.log-section {
+    width: 80%;
+    background: white;
+    padding: 2em;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.log-section .log-entries {
+    margin-top: 1em;
+}
+
+.log-section .log-entry {
+    margin-bottom: 1em;
+    padding: 1em;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.log-entries {
+    max-height: 400px; /* Adjust as needed */
+    overflow-y: auto;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+
+footer {
+    text-align: center;
+    padding: 1em;
+    background-color: #007BFF;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+#calendar-header button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    font-size: 1.2em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#calendar-header button:hover {
+    background-color: #0056b3;
+}
+
+#calendar-header h2 {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #007BFF;
+}
+
+.calendar-grid .calendar-cell.has-events {
+    background-color: #ffd700;
+    color: black;
+    font-weight: bold;
+    border: 2px solid #ffa500;
+    cursor: pointer;
+}
+
+.event-info-section {
+    margin-top: 1em;
+    width: 80%;
+    background: white;
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.event-info-section h3 {
+    margin-top: 0;
+    color: #007BFF;
+}
+
+#event-details ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#event-details ul li {
+    margin: 0.5em 0;
+    padding: 0.5em;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+#event-form select {
+    margin-bottom: 1em; /* Adds space below the dropdown */
+}
+
+#event-form button {
+    margin-top: 1em; /* Adds space above the button */
+}

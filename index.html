@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="branding">
+            <h1>Event Manager</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="calendar.html">Calendar</a></li>
+                <li><a href="log-page.html">Event Log</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="create-event" class="form-section">
+            <h2>Create Event</h2>
+            <form id="event-form">
+                <label for="title">Event Title</label>
+                <input type="text" id="title" name="title" placeholder="Enter event title" required>
+            
+                <label for="date">Event Date</label>
+                <input type="datetime-local" id="date" name="date" required>
+            
+                <label for="description">Event Description</label>
+                <textarea id="description" name="description" placeholder="Enter event description"></textarea>
+            
+                <label for="email">Recipient Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter recipient email" required>
+            
+                <label for="repeat">Repeat</label>
+                <select id="repeat" name="repeat">
+                    <option value="none">None</option>
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                </select>
+            
+                <button type="submit">Add Event</button>
+            </form>
+            
+        </section>
+
+        <section id="reminders">
+            <h3>Upcoming Events</h3>
+            <ul id="reminder-list">
+                <!-- Reminders will be dynamically populated here -->
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Event Manager. All rights reserved.</p>
+    </footer>
+
+    <script>
+document.getElementById('event-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const title = e.target.title.value;
+    const date = e.target.date.value;
+    const description = e.target.description.value;
+    const recipientEmail = e.target.email.value;
+
+    try {
+        // Save event data in localStorage
+        const events = JSON.parse(localStorage.getItem('events')) || [];
+        events.push({ title, date, description, email: recipientEmail });
+        localStorage.setItem('events', JSON.stringify(events));
+
+        // Send email notification
+        const emailSubject = `New Event: ${title}`;
+        const emailBody = `You have a new event scheduled:\n\nTitle: ${title}\nDate: ${date}\nDescription: ${description}`;
+        await sendEmail(recipientEmail, emailSubject, emailBody);
+
+        alert('Event created and email sent successfully!');
+    } catch (error) {
+        console.error('Error sending email:', error);
+        alert('Failed to send email. Please try again.');
+    }
+
+    // Reset the form
+    e.target.reset();
+});
+
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const events = JSON.parse(localStorage.getItem('events')) || [];
+            const reminderList = document.getElementById('reminder-list');
+            const now = new Date();
+    
+            // Filter events for the next 24 hours
+            const upcomingEvents = events.filter(event => {
+                const eventDate = new Date(event.date);
+                return eventDate > now && eventDate - now <= 24 * 60 * 60 * 1000; // 24 hours
+            });
+    
+            // Populate reminders
+            if (upcomingEvents.length > 0) {
+                reminderList.innerHTML = upcomingEvents.map(event =>
+                    `<li><strong>${event.title}</strong>: ${new Date(event.date).toLocaleString()}</li>`
+                ).join('');
+            } else {
+                reminderList.innerHTML = '<li>No upcoming events</li>';
+            }
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Log</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="branding">
+            <h1>Event Manager - Event Log</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Create Event</a></li>
+                <li><a href="calendar.html">Calendar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="event-log" class="log-section">
+            <h2>All Events</h2>
+            <div class="log-entries">
+                <div class="log-entry">
+                    <h3>Sample Event</h3>
+                    <p><strong>Date:</strong> 2024-12-01</p>
+                    <p><strong>Description:</strong> Example description of the event.</p>
+                </div>
+                <!-- Additional events will be dynamically added here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Event Manager. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Example: Dynamically Load Events
+        document.addEventListener('DOMContentLoaded', () => {
+            const events = [
+                { title: 'Team Meeting', date: '2024-12-05', description: 'Discuss quarterly goals.' },
+                { title: 'Webinar', date: '2024-12-10', description: 'Learn new tech trends.' }
+            ];
+
+            const logEntries = document.querySelector('.log-entries');
+            events.forEach(event => {
+                const logEntry = document.createElement('div');
+                logEntry.className = 'log-entry';
+                logEntry.innerHTML = `
+                    <h3>${event.title}</h3>
+                    <p><strong>Date:</strong> ${event.date}</p>
+                    <p><strong>Description:</strong> ${event.description}</p>
+                `;
+                logEntries.appendChild(logEntry);
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const events = JSON.parse(localStorage.getItem('events')) || [];
+    const logEntries = document.querySelector('.log-entries');
+
+    // Clear the log entries
+    logEntries.innerHTML = '';
+
+    // Add each event to the log
+    events.forEach((event) => {
+        const logEntry = document.createElement('div');
+        logEntry.className = 'log-entry';
+        logEntry.innerHTML = `
+            <h3>${event.title}</h3>
+            <p><strong>Date:</strong> ${event.date}</p>
+            <p>${event.description}</p>
+        `;
+        logEntries.appendChild(logEntry);
+    });
+});
+
+    </script>
+</body>
+</html>
